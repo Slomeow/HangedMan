@@ -8,12 +8,19 @@ public class GameManager : MonoBehaviour
 {
 
     public List<Card> deck = new List<Card>();
+    public List<Tarot> Tdeck = new List<Tarot>();
     public List<Card> discardPile = new List<Card>();
+    public List<Tarot> TdiscardPile = new List<Tarot>();
+
     public Transform[] cardSlots;
+    public Transform[] tarotSlots;
     public bool[] availableCardSlots;
+    public bool[] availableTarotSlots;
 
     public Text deckSizeText;
     public Text discardPileText;
+   // public Text TdiscardPile;
+    public Text TdeckSizeText;
 
     public void DrawCard()
     {
@@ -34,6 +41,30 @@ public class GameManager : MonoBehaviour
 
                     availableCardSlots[i] = false;
                     deck.Remove(randCard);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void DrawTarot()
+    {
+        if(Tdeck.Count >= 1)
+        {
+            Tarot randTarot = Tdeck[Random.Range(0, Tdeck.Count)];
+
+            for (int i = 0; i < availableTarotSlots.Length; i++)
+            {
+                if (availableTarotSlots[i] == true)
+                {
+                    randTarot.gameObject.SetActive(true);
+                    randTarot.ThandIndex = i;
+
+                    randTarot.transform.position = tarotSlots[i].position;
+                    randTarot.ThasbeenPlayed = false;
+
+                    availableTarotSlots[i] = false;
+                    Tdeck.Remove(randTarot);
                     return;
                 }
             }
@@ -63,5 +94,6 @@ public class GameManager : MonoBehaviour
     {
         deckSizeText.text = deck.Count.ToString();
         discardPileText.text = discardPile.Count.ToString();
+        TdeckSizeText.text = Tdeck.Count.ToString();
     }
 }
