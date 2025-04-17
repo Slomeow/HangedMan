@@ -3,29 +3,107 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
     public List<Card> deck = new List<Card>();
-    public List<Tarot> Tdeck = new List<Tarot>();
     public List<Card> discardPile = new List<Card>();
+
     public List<Tarot> TdiscardPile = new List<Tarot>();
 
+    public List<Card> activeCards = new List<Card>();
+
+    public List<GameObject> hangmanParts;
+    private int lives = 6;
+
     public Transform[] cardSlots;
-    public Transform[] tarotSlots;
     public bool[] availableCardSlots;
     public bool[] availableTarotSlots;
 
     public Text deckSizeText;
     public Text discardPileText;
-   // public Text TdiscardPile;
-    public Text TdeckSizeText;
+
+    //public List<string> wordList = new List<string> { "CELESTIAL", "DIVINE", "FORTUNE", "ARCANE" };
+    //public string targetWord;
+
+    private HashSet<char> correctGuesses = new HashSet<char>();
+
+    public string targetWord = "CELESTIAL";
+    private char[] revealedLetters;
+    public Text wordDisplayText; // Assign in Inspector
+
+    public Text incorrectLettersText;
+    private List<string> incorrectLetters = new List<string>();
+
+    void Start()
+    {
+        // Setup hidden letters for hangman word
+        revealedLetters = new char[targetWord.Length];
+        for (int i = 0; i < revealedLetters.Length; i++)
+        {
+            revealedLetters[i] = '_';
+        }
+
+        UpdateWordDisplay();
+    }
+
+    public bool CheckLetter(string letter)
+    {
+        letter = letter.ToUpper();
+        bool found = false;
+
+        for (int i = 0; i < targetWord.Length; i++)
+        {
+            if (targetWord[i].ToString() == letter)
+            {
+                revealedLetters[i] = targetWord[i];
+                found = true;
+
+                //CheckWinCondition();
+            }
+        }
+
+        UpdateWordDisplay();
+        return found;
+    }
+
+    void UpdateWordDisplay()
+    {
+        if (wordDisplayText != null)
+        {
+            wordDisplayText.text = string.Join(" ", revealedLetters);
+        }
+    }
+
+    public void ReturnUnplayedCards(Card selectedCard)
+    {
+        List<Card> cardsToReturn = new List<Card>();
+
+        foreach (Card card in activeCards)
+        {
+            if (card != selectedCard && !card.hasbeenPlayed && card.gameObject.activeSelf)
+            {
+                cardsToReturn.Add(card);
+            }
+        }
+
+        foreach (Card card in cardsToReturn)
+        {
+            deck.Add(card);
+            card.gameObject.SetActive(false);
+            availableCardSlots[card.handIndex] = true;
+        }
+
+        // Clear all — next draw will refill this fresh
+        activeCards.Clear();
+    }
 
     public void DrawCard()
     {
 
-        if(deck.Count >= 1)
+        if (deck.Count >= 1)
         {
             Card randCard = deck[Random.Range(0, deck.Count)];
 
@@ -41,30 +119,7 @@ public class GameManager : MonoBehaviour
 
                     availableCardSlots[i] = false;
                     deck.Remove(randCard);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void DrawTarot()
-    {
-        if(Tdeck.Count >= 1)
-        {
-            Tarot randTarot = Tdeck[Random.Range(0, Tdeck.Count)];
-
-            for (int i = 0; i < availableTarotSlots.Length; i++)
-            {
-                if (availableTarotSlots[i] == true)
-                {
-                    randTarot.gameObject.SetActive(true);
-                    randTarot.ThandIndex = i;
-
-                    randTarot.transform.position = tarotSlots[i].position;
-                    randTarot.ThasbeenPlayed = false;
-
-                    availableTarotSlots[i] = false;
-                    Tdeck.Remove(randTarot);
+                    activeCards.Add(randCard); //track it here
                     return;
                 }
             }
@@ -73,9 +128,9 @@ public class GameManager : MonoBehaviour
 
     public void Shuffle()
     {
-        if(discardPile.Count >= 1)
+        if (discardPile.Count >= 1)
         {
-            foreach(Card card in discardPile)
+            foreach (Card card in discardPile)
             {
                 deck.Add(card);
             }
@@ -83,17 +138,72 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void LoseLife()
     {
-        
+        lives--;
+
+        int partIndex = 6 - lives - 1;
+        if (partIndex >= 0 && partIndex < hangmanParts.Count)
+        {
+            hangmanParts[partIndex].SetActive(false);
+        }
+
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void AddIncorrectLetter(string letter)
+    {
+        if (!incorrectLetters.Contains(letter))
+        {
+            incorrectLetters.Add(letter);
+            UpdateIncorrectLettersUI();
+        }
+    }
+
+    private void UpdateIncorrectLettersUI()
+    {
+        incorrectLettersText.text = string.Join(" ", incorrectLetters);
+    }
+
+    public void ReportLetterGuess(string letter, bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            char c = letter[0];
+            if (!correctGuesses.Contains(c))
+            {
+                correctGuesses.Add(c);
+                CheckWinCondition();
+            }
+        }
+    }
+    private void CheckWinCondition()
+    {
+        HashSet<char> uniqueLetters = new HashSet<char>(targetWord.ToCharArray());
+
+        if (correctGuesses.SetEquals(uniqueLetters))
+        {
+            Debug.Log("You win!");
+            SceneManager.LoadScene("Win");
+        }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over! You've been hanged.");
+
+        SceneManager.LoadScene("Lose");
+        // Optional: trigger end screen, disable input, etc.
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckWinCondition();
         deckSizeText.text = deck.Count.ToString();
         discardPileText.text = discardPile.Count.ToString();
-        TdeckSizeText.text = Tdeck.Count.ToString();
     }
 }

@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 56080455}
   - component: {fileID: 56080454}
   m_Layer: 5
-  m_Name: CardG
+  m_Name: G
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 159565982}
   - component: {fileID: 159565983}
   m_Layer: 5
-  m_Name: CardD
+  m_Name: D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 263454599}
   - component: {fileID: 263454598}
   m_Layer: 5
-  m_Name: CardL (1)
+  m_Name: M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 385571442}
   - component: {fileID: 385571441}
   m_Layer: 5
-  m_Name: CardL
+  m_Name: L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,7 +1303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 517, y: 70}
+  m_AnchoredPosition: {x: 753, y: -5.0000076}
   m_SizeDelta: {x: 125.82, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &409450728
@@ -1480,8 +1480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 517, y: -207}
-  m_SizeDelta: {x: 192.55, y: 241.56}
+  m_AnchoredPosition: {x: 763.15, y: -339.37}
+  m_SizeDelta: {x: 250.86, y: 297.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486587831
 MonoBehaviour:
@@ -1769,7 +1769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -357.39996, y: -46.009987}
+  m_AnchoredPosition: {x: -809.27, y: -124}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &592491104
@@ -2154,7 +2154,7 @@ GameObject:
   - component: {fileID: 909720387}
   - component: {fileID: 909720386}
   m_Layer: 5
-  m_Name: CardH
+  m_Name: H
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2322,8 +2322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -526, y: -205}
-  m_SizeDelta: {x: 192.55, y: 241.56}
+  m_AnchoredPosition: {x: -769.63, y: -333.3}
+  m_SizeDelta: {x: 239.28, y: 284.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910588647
 MonoBehaviour:
@@ -2511,7 +2511,7 @@ GameObject:
   - component: {fileID: 954572966}
   - component: {fileID: 954572967}
   m_Layer: 5
-  m_Name: CardE
+  m_Name: E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2735,7 +2735,7 @@ GameObject:
   - component: {fileID: 1077536986}
   - component: {fileID: 1077536987}
   m_Layer: 5
-  m_Name: CardC
+  m_Name: C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2997,7 +2997,7 @@ GameObject:
   - component: {fileID: 1215280800}
   - component: {fileID: 1215280799}
   m_Layer: 5
-  m_Name: CardJ (1)
+  m_Name: K
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3358,7 +3358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 593, y: -12}
+  m_AnchoredPosition: {x: 892.7, y: -94}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233960673
@@ -3532,7 +3532,7 @@ GameObject:
   - component: {fileID: 1493288934}
   - component: {fileID: 1493288935}
   m_Layer: 5
-  m_Name: CardF
+  m_Name: F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3677,7 +3677,7 @@ GameObject:
   - component: {fileID: 1514101148}
   - component: {fileID: 1514101149}
   m_Layer: 5
-  m_Name: CardA
+  m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3946,22 +3946,21 @@ MonoBehaviour:
   - {fileID: 1493288934}
   - {fileID: 1493288934}
   - {fileID: 1493288934}
-  Tdeck:
-  - {fileID: 252378386}
-  - {fileID: 3633998}
   discardPile: []
   TdiscardPile: []
+  activeCards: []
+  hangmanParts: []
   cardSlots:
   - {fileID: 799169379}
   - {fileID: 692306656}
   - {fileID: 1931284223}
-  tarotSlots:
-  - {fileID: 1573087479}
   availableCardSlots: 010101
   availableTarotSlots: 01
   deckSizeText: {fileID: 1233960673}
   discardPileText: {fileID: 1977101634}
-  TdeckSizeText: {fileID: 576782182}
+  targetWord: CELESTIAL
+  wordDisplayText: {fileID: 0}
+  incorrectLettersText: {fileID: 0}
 --- !u!4 &1723603840
 Transform:
   m_ObjectHideFlags: 0
@@ -4057,7 +4056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 482.99994, y: 22.000008}
+  m_AnchoredPosition: {x: 719, y: -53}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745792462
@@ -4115,7 +4114,7 @@ GameObject:
   - component: {fileID: 1778561872}
   - component: {fileID: 1778561871}
   m_Layer: 5
-  m_Name: CardJ
+  m_Name: J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4260,7 +4259,7 @@ GameObject:
   - component: {fileID: 1803872766}
   - component: {fileID: 1803872767}
   m_Layer: 5
-  m_Name: CardB
+  m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4870,7 +4869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 643.39996, y: 18.009987}
+  m_AnchoredPosition: {x: 894.3, y: -59.855}
   m_SizeDelta: {x: 156.79, y: 30.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977101634
@@ -4951,7 +4950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -533.32025, y: 257.97}
+  m_AnchoredPosition: {x: -851.29, y: 461}
   m_SizeDelta: {x: 69.89, y: 78.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1982964614
@@ -5061,7 +5060,7 @@ GameObject:
   - component: {fileID: 2061315673}
   - component: {fileID: 2061315672}
   m_Layer: 5
-  m_Name: CardI
+  m_Name: I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5227,7 +5226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485, y: -12}
+  m_AnchoredPosition: {x: 721, y: -87.00001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089437634
