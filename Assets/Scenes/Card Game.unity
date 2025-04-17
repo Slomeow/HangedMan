@@ -360,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &56080456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!61 &159565980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -868,6 +870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &263454600
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1215,6 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &385571443
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2234,6 +2238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &909720388
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2598,6 +2603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!61 &954572967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2822,6 +2828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!61 &1077536987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3077,6 +3084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &1215280801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3619,6 +3627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!61 &1493288935
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3809,6 +3818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!1 &1530052210
 GameObject:
   m_ObjectHideFlags: 0
@@ -4194,6 +4204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &1778561873
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4346,6 +4357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!61 &1803872767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5140,6 +5152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasbeenPlayed: 0
   handIndex: 0
+  cardLetter: 
 --- !u!212 &2061315674
 SpriteRenderer:
   m_ObjectHideFlags: 0
