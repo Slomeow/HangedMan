@@ -45,11 +45,7 @@ public class StartMenu : MonoBehaviour
 
     void HighlightButton()
     {
-        for (int i = 0; i < menuButtons.Count; i++)
-        {
-            Color color = (i == selectedIndex) ? Color.yellow : Color.white;
-            menuButtons[i].GetComponentInChildren<Text>().color = color;
-        }
+       
     }
 
     public void StartGame()
@@ -59,7 +55,13 @@ public class StartMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        SceneManager.LoadScene("Rules");
         Debug.Log("Options Menu Opened");
+    }
+
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
