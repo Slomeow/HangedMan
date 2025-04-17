@@ -655,6 +655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuButtons:
   - {fileID: 934737896}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 --- !u!1 &945764306
@@ -742,6 +743,8 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 4184acd (Added base Hangfan)
 --- !u!1 &1489663689
 GameObject:
   m_ObjectHideFlags: 0
