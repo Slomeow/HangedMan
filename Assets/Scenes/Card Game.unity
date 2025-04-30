@@ -5554,7 +5554,7 @@ MonoBehaviour:
   availableTarotSlots: 01
   deckSizeText: {fileID: 1233960673}
   discardPileText: {fileID: 1977101634}
-  targetWord: DIVINE
+  targetWord: STERILE
   wordDisplayText: {fileID: 827430295}
   incorrectLettersText: {fileID: 1711288527}
 --- !u!4 &1723603840
