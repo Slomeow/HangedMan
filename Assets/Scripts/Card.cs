@@ -37,7 +37,13 @@ public class Card : MonoBehaviour
         if (!hasbeenPlayed)
         {
             hasbeenPlayed = true;
+            if (handIndex == 3)
+            {
+                // If this was the 4th slot, disable it again
+                gm.availableCardSlots[3] = false;
+            }
             gm.availableCardSlots[handIndex] = true;
+            gm.OnLetterCardPlayed(); //reset tarot usag
 
             // Move up slightly
             transform.position += Vector3.up * 1.5f;
@@ -54,6 +60,8 @@ public class Card : MonoBehaviour
 
             // Return the rest of the cards
             gm.ReturnUnplayedCards(this);
+
+            gm.DiscardRemainingLetterCards();
         }
     }
 
@@ -127,7 +135,23 @@ public class Card : MonoBehaviour
 
         sr.color = goldColor;
     }
-}
+
+   /* IEnumerator RemoveCardWithEffect(Card card)
+    {
+        SpriteRenderer sr = card.GetComponent<SpriteRenderer>();
+        Color originalColor = sr.color;
+
+        // Brief red flash before disappearing
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+
+        sr.color = originalColor;
+
+        gm.availableCardSlots[card.handIndex] = true;
+        gm.discardPile.Add(card);
+        card.gameObject.SetActive(false);
+    } */
+} 
 
 //public void ResetHangman()
 //{

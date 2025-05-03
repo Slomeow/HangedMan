@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public List<Card> deck = new List<Card>();
     public List<Card> discardPile = new List<Card>();
 
+    public List<Tarot> Tdeck = new List<Tarot>();
     public List<Tarot> TdiscardPile = new List<Tarot>();
 
     public List<Card> activeCards = new List<Card>();
@@ -19,8 +20,11 @@ public class GameManager : MonoBehaviour
     private int lives = 6;
 
     public Transform[] cardSlots;
+    public Transform[] tarotSlots;
     public bool[] availableCardSlots;
     public bool[] availableTarotSlots;
+
+    public bool hasUsedTarotThisRound = false;
 
     public Text deckSizeText;
     public Text discardPileText;
@@ -49,6 +53,20 @@ public class GameManager : MonoBehaviour
         UpdateWordDisplay();
     }
 
+    public bool HasTarotInHand()
+    {
+        foreach (bool slotTaken in availableTarotSlots)
+        {
+            if (!slotTaken) return true;
+        }
+        return false;
+    }
+//
+    public void OnLetterCardPlayed()
+    {
+        hasUsedTarotThisRound = false;
+    }
+//
     public bool CheckLetter(string letter)
     {
         letter = letter.ToUpper();
@@ -96,7 +114,6 @@ public class GameManager : MonoBehaviour
             availableCardSlots[card.handIndex] = true;
         }
 
-        // Clear all — next draw will refill this fresh
         activeCards.Clear();
     }
 
@@ -120,6 +137,30 @@ public class GameManager : MonoBehaviour
                     availableCardSlots[i] = false;
                     deck.Remove(randCard);
                     activeCards.Add(randCard); //track it here
+                    return;
+                }
+            }
+        }
+    }
+
+    public void DrawTarot()
+    {
+        if (Tdeck.Count >= 1 && !HasTarotInHand())
+        {
+            Tarot randTarot = Tdeck[Random.Range(0, Tdeck.Count)];
+
+            for (int i = 0; i < availableTarotSlots.Length; i++)
+            {
+                if (availableTarotSlots[i] == true)
+                {
+                    randTarot.gameObject.SetActive(true);
+                    randTarot.ThandIndex = i;
+
+                    randTarot.transform.position = tarotSlots[i].position;
+                    randTarot.ThasbeenPlayed = false;
+
+                    availableTarotSlots[i] = false;
+                    Tdeck.Remove(randTarot);
                     return;
                 }
             }
@@ -154,6 +195,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GainLife()
+    {
+        if (lives < 6)
+        {
+            lives++;
+
+            int partIndex = 6 - lives;
+            if (partIndex >= 0 && partIndex < hangmanParts.Count)
+            {
+                hangmanParts[partIndex].SetActive(true);
+            }
+        }
+    }
+
     public void AddIncorrectLetter(string letter)
     {
         if (!incorrectLetters.Contains(letter))
@@ -180,6 +235,175 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void DrawExtraLetterToFourthSlot()
+    {
+        Debug.Log("Attempting to draw a card to 4th slot...");
+        availableCardSlots[3] = true; // forcibly enable slot 4
+
+        if (deck.Count < 1)
+        {
+            Debug.LogWarning("No cards left in the deck!");
+            return;
+        }
+
+        if (availableCardSlots.Length < 4)
+        {
+            Debug.LogWarning("Card slots array not large enough!");
+            return;
+        }
+
+        if (!availableCardSlots[3])
+        {
+            Debug.LogWarning("4th card slot is not available!");
+            return;
+        }
+
+        Card randCard = deck[Random.Range(0, deck.Count)];
+        randCard.gameObject.SetActive(true);
+        randCard.handIndex = 3;
+
+        randCard.transform.position = cardSlots[3].position;
+        randCard.hasbeenPlayed = false;
+
+        availableCardSlots[3] = false;
+        deck.Remove(randCard);
+
+        Debug.Log("Card drawn into 4th slot!");
+    }
+
+    public void TheWorldCard()
+    {
+        List<int> unrevealedIndices = new List<int>();
+
+        for (int i = 0; i < targetWord.Length; i++)
+        {
+            if (revealedLetters[i] == '_')
+            {
+                unrevealedIndices.Add(i);
+            }
+        }
+
+        if (unrevealedIndices.Count > 0)
+        {
+            int randomIndex = unrevealedIndices[Random.Range(0, unrevealedIndices.Count)];
+            revealedLetters[randomIndex] = targetWord[randomIndex];
+            UpdateWordDisplay();
+        }
+    }
+
+    public void TheMoonCard()
+    {
+        List<Card> incorrectCards = new List<Card>();
+
+        foreach (Card card in FindObjectsOfType<Card>())
+        {
+            if (card.gameObject.activeInHierarchy && !string.IsNullOrEmpty(card.cardLetter))
+            {
+                if (!targetWord.Contains(card.cardLetter.ToUpper()))
+                {
+                    incorrectCards.Add(card);
+                }
+            }
+        }
+
+        if (incorrectCards.Count > 0)
+        {
+            Card cardToRemove = incorrectCards[Random.Range(0, incorrectCards.Count)];
+            StartCoroutine(RemoveCardWithEffect(cardToRemove));
+        }
+        else
+        {
+            Debug.Log("no incorrect cards to remove");
+        }
+    }
+
+    private IEnumerator RemoveCardWithEffect(Card card)
+    {
+        SpriteRenderer sr = card.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color originalColor = sr.color;
+            sr.color = Color.red; // Moon effect color
+            yield return new WaitForSeconds(0.5f);
+            sr.color = originalColor;
+        }
+
+        availableCardSlots[card.handIndex] = true;
+        discardPile.Add(card);
+        card.gameObject.SetActive(false);
+    }
+
+    public void UseDeathTarotCard()
+    {
+        Debug.Log("Death card used: Reshuffling current letter hand.");
+
+        List<Card> activeHandCards = new List<Card>();
+
+        // Loop through only the card slots used for hand
+        for (int i = 0; i < availableCardSlots.Length; i++)
+        {
+            if (!availableCardSlots[i]) // slot is occupied
+            {
+                foreach (Card card in FindObjectsOfType<Card>())
+                {
+                    if (card.handIndex == i && card.gameObject.activeInHierarchy)
+                    {
+                        activeHandCards.Add(card);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Return those cards to the deck and clear the slots
+        foreach (Card card in activeHandCards)
+        {
+            availableCardSlots[card.handIndex] = true;
+            card.hasbeenPlayed = false;
+            card.gameObject.SetActive(false);
+            deck.Add(card);
+        }
+
+        // Disable 4th slot (from The Emperor) if it's available
+        if (availableCardSlots.Length >= 4)
+        {
+            availableCardSlots[3] = false;
+        }
+
+        // Draw 3 new cards
+        for (int i = 0; i < 3; i++)
+        {
+            DrawCard();
+        }
+    }
+
+    public void DiscardRemainingLetterCards()
+    {
+        foreach (Card card in FindObjectsOfType<Card>())
+        {
+            if (!card.hasbeenPlayed)
+            {
+                availableCardSlots[card.handIndex] = true;
+                discardPile.Add(card);
+                card.gameObject.SetActive(false);
+            }
+        }
+
+        // Reset slot 4 (index 3) if it was used
+        if (availableCardSlots.Length >= 4)
+        {
+            availableCardSlots[3] = false;
+        }
+    }
+    public void ResetFourthSlot()
+    {
+        if (availableCardSlots.Length >= 4)
+        {
+            availableCardSlots[3] = false;
+        }
+    }
+
     private void CheckWinCondition()
     {
         HashSet<char> uniqueLetters = new HashSet<char>(targetWord.ToCharArray());

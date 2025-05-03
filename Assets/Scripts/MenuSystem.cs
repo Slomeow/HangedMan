@@ -71,7 +71,12 @@ public class StartMenu : MonoBehaviour
 
     public void QuitGame()
     {
+     #if UNITY_EDITOR
+    // This will stop the game when playing in the editor.
+    UnityEditor.EditorApplication.isPlaying = false;
+     #else
+        // This will quit the game in the build.
         Application.Quit();
-        Debug.Log("Game Quit");
+     #endif
     }
 }
