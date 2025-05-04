@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
         int partIndex = 6 - lives - 1;
         if (partIndex >= 0 && partIndex < hangmanParts.Count)
         {
-            hangmanParts[partIndex].SetActive(false);
+            hangmanParts[partIndex].SetActive(true);
         }
 
         if (lives <= 0)
@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
             int partIndex = 6 - lives;
             if (partIndex >= 0 && partIndex < hangmanParts.Count)
             {
-                hangmanParts[partIndex].SetActive(true);
+                hangmanParts[partIndex].SetActive(false);
             }
         }
     }
